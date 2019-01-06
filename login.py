@@ -25,10 +25,16 @@ def loginAndGetProfile(event,context):
             profile_body = profile_json["body"][0]
             #if they arent a director yeet them out
             if profile_body['role']['director'] == False:
-                return {"statusCode":400,"body":"You are not a director, please contact a director for updates"}
+                ret = {"statusCode":400,"body":"You are not a director, please contact a director for updates"}
+                return add_cors_headers(ret)
+            
             else:
-                return {statusCode:200,"body":json.dumps({"email":resp_json["email"],"token":resp_json["token"]})}
+                
+                ret = {statusCode:200,"body":json.dumps({"email":resp_json["email"],"token":resp_json["token"]})}
+                return add_cors_headers(ret)
         else:
-            return {"statusCode":400,"body":"Invalid Username or Password"}
+            #on error send the error to the user
+            ret = {"statusCode":400,"body":json.dumps(resp_parsed["body"])}
+            return add_cors_headers(ret)
 
     
