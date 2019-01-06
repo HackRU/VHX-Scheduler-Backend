@@ -30,7 +30,7 @@ def loginAndGetProfile(event,context):
             
             else:
                 
-                ret = {statusCode:200,"body":json.dumps({"email":resp_json["email"],"token":resp_json["token"]})}
+                ret = {"statusCode":200,"body":json.dumps({"email":resp_json["email"],"token":resp_json["token"]})}
                 return add_cors_headers(ret)
         else:
             #on error send the error to the user
