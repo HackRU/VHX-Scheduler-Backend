@@ -22,5 +22,5 @@ def sendMagicLink(event,context):
         "permissions":permissions
     }
     responseFromRequest = requests.post(config.BASE_URL + "/magiclink", json = (request_info))
-    return responseFromRequest.json()
+    return config.add_cors_headers(responseFromRequest.json())
 
