@@ -19,8 +19,9 @@ def sendMagicLink(event,context):
         "email":auth_email,
         "token":event['token'],
         "emailsTo":emails_parsed,
-        "permissions":permissions
+        "permissions":permissions,
+        "numLinks":len(emails_parsed)
     }
-    responseFromRequest = requests.post(config.BASE_URL + "/magiclink", json = (request_info))
+    responseFromRequest = requests.post(config.BASE_URL + "/createmagiclink", json = (request_info))
     return config.add_cors_headers(responseFromRequest.json())
 
