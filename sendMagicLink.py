@@ -24,4 +24,3 @@ def sendMagicLink(event,context):
     }
     responseFromRequest = requests.post(config.BASE_URL + "/createmagiclink", json = (request_info))
     return config.add_cors_headers(responseFromRequest.json())
-
