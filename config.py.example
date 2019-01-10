@@ -1,1 +1,8 @@
 BASE_URL = ""
+def add_cors_headers(resp):
+        if 'headers' not in resp:
+            resp['headers'] = {}
+        resp["headers"]["Access-Control-Allow-Origin"] = '*'
+        resp["headers"]["Access-Control-Allow-Headers"] ='Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
+        resp["headers"]["Access-Control-Allow-Credentials"] = True
+        return resp
