@@ -39,4 +39,6 @@ def insertVolunteerAction(event,context):
             ':val': event['updated_val']
          }
     ) 
+    #save the data after they type
+    return config.add_cors_headers({'statusCode':200,"body":"saved"})
 
