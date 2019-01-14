@@ -11,6 +11,7 @@ def getVolunteers(event,context):
     profile_request_data_dict = {"email":event["email"],"token":event["token"], "query":{"role.volunteer":True}}
     dat = requests.post(config.BASE_URL + "/read", json = (profile_request_data_dict))
     response = dat.json()
+    #now we join with out specifc data and get all the volunteers shifts and current actions
     dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
     tableToCheck = dynamodb.Table('VolunteerActions')
     if response['statusCode'] == 200:
