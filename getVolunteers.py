@@ -18,10 +18,9 @@ def getVolunteers(event,context):
             resp = tableToCheck.query(
                 KeyConditionExpression=Key('email').eq(response['body'][i]['email'])
             )
-            print(resp)
             if len(resp['Items']) > 0:
                 #only one item so get 0th element
-                response[i]['current_action'] = resp['Items'][0]['current_action']
+                response['body'][i]['current_action'] = resp['Items'][0]['current_action']
     return response
 
 def insertVolunteerAction(event,context):
