@@ -8,4 +8,4 @@ def getVolunteers(event,context):
 
     profile_request_data_dict = {"email":event["email"],"token":event["token"], "query":{"role.volunteer":True}}
     dat = requests.post(config.BASE_URL + "/read", json = (profile_request_data_dict))
-    return data.json()
+    return dat.json()
