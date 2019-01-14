@@ -1,6 +1,7 @@
 import requests
 import config
 import boto3
+from boto3.dynamodb.conditions import Key, Attr
 def getVolunteers(event,context):
 
     """
@@ -12,14 +13,15 @@ def getVolunteers(event,context):
     response = dat.json()
     dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
     tableToCheck = dynamodb.Table('VolunteerActions')
-    if response.statusCode == 200:
-        for i in range(len(response.body()))
-            resp = table.query(
-                KeyConditionExpression=Key('email').eq(resp.body[i]['email'])
+    if response['statusCode'] == 200:
+        for i in range(len(response['body'])):
+            resp = tableToCheck.query(
+                KeyConditionExpression=Key('email').eq(response['body'][i]['email'])
             )
             print(resp)
-            if resp:
-                response[i]['current_action'] = resp['current_action']
+            if len(resp['Items']) > 0:
+                #only one item so get 0th element
+                response[i]['current_action'] = resp['Items'][0]['current_action']
     return response
 
 def insertVolunteerAction(event,context):
