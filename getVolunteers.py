@@ -5,7 +5,7 @@ from boto3.dynamodb.conditions import Key, Attr
 def getVolunteers(event,context):
 
     """
-        Gets list of volunteers
+        Gets list of volunteers and joins with shifts and current action
     """
 
     profile_request_data_dict = {"email":event["email"],"token":event["token"], "query":{"role.volunteer":True}}
