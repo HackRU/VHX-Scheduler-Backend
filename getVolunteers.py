@@ -20,8 +20,13 @@ def getVolunteers(event,context):
                 KeyConditionExpression=Key('email').eq(response['body'][i]['email'])
             )
             if len(resp['Items']) > 0:
-                #only one item so get 0th element
-                response['body'][i]['current_action'] = resp['Items'][0]['current_action']
+                #only one item per email so get 0th element
+                if('current_action' in resp['Items'][0]):
+                    response['body'][i]['current_action'] = resp['Items'][0]['current_action']
+                #set shifts
+                if ('shift' in resp['Items'][0]:
+                    response['body'][i]['shift'] = resp['Items'][0]['shift']
+                
     return response
 
 def insertVolunteerAction(event,context):
@@ -36,7 +41,7 @@ def insertVolunteerAction(event,context):
         },
         UpdateExpression="set current_action = :val",
         ExpressionAttributeValues={
-            ':val': event['updated_val']
+            ':val': event['current_action']
          }
     ) 
     #save the data after they type
