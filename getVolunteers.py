@@ -25,7 +25,7 @@ def getVolunteers(event,context):
                     response['body'][i]['current_action'] = resp['Items'][0]['current_action']
                 #set shifts
                 if ('shifts' in resp['Items'][0]):
-                    response['body'][i]['shift'] = resp['Items'][0]['shifts']
+                    response['body'][i]['shifts'] = resp['Items'][0]['shifts']
 
                 
     return response
