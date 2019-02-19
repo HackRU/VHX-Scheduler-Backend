@@ -24,8 +24,8 @@ def loginAndGetProfile(event,context):
             profile_json = profile.json()
             profile_body = profile_json["body"][0]
             #if they arent a director yeet them out
-            if profile_body['role']['director'] == False:
-                ret = {"statusCode":400,"body":"You are not a director, please contact a director for updates"}
+            if profile_body['role']['director'] == False profile["body"]["organizer"] == False:
+                ret = {"statusCode":400,"body":"You are not a director/organizer, please contact a director/organizer for updates"}
                 return add_cors_headers(ret)
             
             else:
